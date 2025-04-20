@@ -1,8 +1,9 @@
 package user
 
 import (
+	"rafkogo/utils/view"
+
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 type UserHandler struct {
@@ -15,5 +16,16 @@ func NewUserHandler(service UserService) *UserHandler {
 
 func (h *UserHandler) Welcome(c *gin.Context) {
 	message := h.service.GetWelcomeMessage()
-	c.JSON(http.StatusOK, gin.H{"message": message})
+
+	view.Render(c.Writer, 
+	[]string{
+		"internal/user/view/index.blade",
+		"internal/user/view/header.blade",
+		"internal/user/view/footer.blade",
+	}, map[string]interface{}{
+		"Title":   "صفحه اصلی",
+		"Message": message,
+		"LoggedIn": false,
+	})
+
 }

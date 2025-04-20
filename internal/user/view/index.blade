@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title }}</title>
+</head>
+<body>
+
+    {{ template "header.blade" . }}
+
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Message }}</p>
+
+    {{ if .LoggedIn }}
+        <p>شما وارد شده‌اید.</p>
+        <a href="/logout">خروج</a>
+    {{ else }}
+        <p>لطفاً وارد شوید.</p>
+        <a href="/login">ورود</a>
+    {{ end }}
+
+    {{ template "footer.blade" }}
+</body>
+</html>
