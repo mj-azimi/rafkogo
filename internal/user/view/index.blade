@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ .Title }}</title>
+    <link rel="stylesheet" href="/public/style/app.css">
 </head>
 <body>
 
     {{ template "header.blade" . }}
+
+    
+    <img src="/public/img/12.jpg" alt="">
 
     <h1>{{ .Title }}</h1>
     <p>{{ .Message }}</p>

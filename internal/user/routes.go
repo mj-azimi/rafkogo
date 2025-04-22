@@ -5,10 +5,9 @@ import (
 )
 
 func RegisterRoutes(r *gin.RouterGroup) {
+	r.Use(LoggerMiddleware())
 
-	
 	service := NewUserService()
 	handler := NewUserHandler(service)
-	
 	r.GET("/", handler.Welcome)
 }

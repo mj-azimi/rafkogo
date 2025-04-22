@@ -1,4 +1,4 @@
-package chats
+package chatModel
 
 import (
 	"rafkogo/bootstrap"
@@ -11,6 +11,10 @@ type Chat struct {
 	ClientID  int       `gorm:"column:client_id"`
 	Text      string    `gorm:"column:text"`
 	CreatedAt time.Time `gorm:"column:created_at;autoCreateTime"`
+}
+
+func Migration() error {
+    return bootstrap.DB.AutoMigrate(&Chat{})
 }
 
 func Create(chat Chat) error {

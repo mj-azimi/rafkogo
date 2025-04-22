@@ -1,11 +1,11 @@
 package bootstrap
 
 import (
-    "fmt"
-    "log"
-    "os"
-    "gorm.io/driver/mysql"
-    "gorm.io/gorm"
+	"fmt"
+	"log"
+	"os"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB // باید Public باشه (با D بزرگ)
