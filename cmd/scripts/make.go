@@ -37,19 +37,16 @@ func main() {
 	for tmplPath, tmplContent := range files {
 		path := parseTemplate(tmplPath, data)
 
-		// Create directory if it doesn't exist
 		if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 			fmt.Println("Failed to create directory:", err)
 			continue
 		}
 
-		// Skip if file exists
 		if _, err := os.Stat(path); err == nil {
 			fmt.Println("Skipped (exists):", path)
 			continue
 		}
 
-		// Render content
 		content := parseTemplate(tmplContent, data)
 		if err := os.WriteFile(path, []byte(content), 0644); err != nil {
 			fmt.Println("Failed to create file:", err)

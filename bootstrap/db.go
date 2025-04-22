@@ -8,7 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
-var DB *gorm.DB // باید Public باشه (با D بزرگ)
+var DB *gorm.DB
 
 func GetEnv(key, fallback string) string {
     if value, exists := os.LookupEnv(key); exists {

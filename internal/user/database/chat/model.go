@@ -2,7 +2,7 @@ package chatModel
 
 import (
 	"rafkogo/bootstrap"
-	"time" // اضافه کردن پکیج time
+	"time"
 )
 
 type Chat struct {

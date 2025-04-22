@@ -5,8 +5,6 @@ import (
 	"rafkogo/bootstrap"
 	"rafkogo/config"
 	migrationregister "rafkogo/migration_register"
-	// "rafkogo/internal/user/database/chats"
-	// "rafkogo/internal/user/database/users"
 )
 
 func main() {
