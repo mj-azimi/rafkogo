@@ -8,24 +8,13 @@
 <body>
 
     {{ template "header.blade" . }}
-
+    <a href="/">go to home</a>
     
-    <img src="/public/img/12.jpg" alt="">
-
-    <h1>{{ .Title }}</h1>
-    <p>{{ .Message }}</p>
-
-    <form  method="post">
-        
+    <form action="">
+        <input type="text" placeholder="username">
+        <input type="password" placeholder="password">
+        <button type="submit">login</button>
     </form>
-
-    {{ if .LoggedIn }}
-        <p>شما وارد شده‌اید.</p>
-        <a href="/logout">خروج</a>
-    {{ else }}
-        <p>لطفاً وارد شوید.</p>
-        <a href="/login">ورود</a>
-    {{ end }}
 
     {{ template "footer.blade" }}
 </body>

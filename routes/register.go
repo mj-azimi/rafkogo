@@ -3,13 +3,15 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 
-	"rafkogo/internal/user"     
+	"rafkogo/internal/user"
+	"rafkogo/internal/landing"
 )
 
 func RegisterRoutes(r *gin.Engine) {
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "Welcome to your Go project!"})
-	})
+
+	
+	landingRoute := r.Group("/")
+	landing.RegisterRoutes(landingRoute.Group("/"))
 
 	api := r.Group("/api")
 	user.RegisterRoutes(api.Group("/users"))

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title }}</title>
+    <link rel="stylesheet" href="/public/style/app.css">
+</head>
+<body>
+
+    {{ template "header.blade" . }}
+
+    
+    <img src="/public/img/12.jpg" alt="">
+
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Message }}</p>
+
+    <form  method="post">
+        
+    </form>
+
+    {{ if .LoggedIn }}
+        <p>شما وارد شده‌اید.</p>
+        <a href="/logout">خروج</a>
+    {{ else }}
+        <p>لطفاً وارد شوید.</p>
+        <a href="/api/users/login">ورود</a>
+    {{ end }}
+
+    {{ template "footer.blade" }}
+</body>
+</html>

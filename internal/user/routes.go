@@ -9,5 +9,5 @@ func RegisterRoutes(r *gin.RouterGroup) {
 
 	service := NewUserService()
 	handler := NewUserHandler(service)
-	r.GET("/", handler.Welcome)
+	r.GET("/login", handler.Welcome)
 }
