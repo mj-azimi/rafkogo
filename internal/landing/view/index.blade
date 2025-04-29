@@ -20,11 +20,11 @@
     </form>
 
     {{ if .LoggedIn }}
-        <p>شما وارد شده‌اید.</p>
-        <a href="/logout">خروج</a>
+        <p>You are logged in.</p>
+        <a href="/logout">Exit</a>
     {{ else }}
-        <p>لطفاً وارد شوید.</p>
-        <a href="/api/users/login">ورود</a>
+        <p>Please log in.</p>
+        <a href="/api/users/login">Login</a>
     {{ end }}
 
     {{ template "footer.blade" }}

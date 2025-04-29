@@ -22,7 +22,7 @@ func (h *landingHandler) Welcome(c *gin.Context) {
 	title, err := h.service.GetFirstLanding()
 	if err != nil {
 		title = new(string)
-		*title = "رکوردی یافت نشد"
+		*title = "No record found."
 	}
 
 	view.Render(c.Writer,

@@ -13,6 +13,6 @@ func main() {
 	migrationregister.MigrationRegister();
 	port := config.GetEnv("APP_PORT", "8080")
 	if err := app.Run(":" + port); err != nil {
-		log.Fatal("خطا در اجرای سرور:", err)
+		log.Fatal("Error running the server:", err)
 	}
 }
