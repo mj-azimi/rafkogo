@@ -15,7 +15,15 @@ func NewlandingHandler(service LandingService) *landingHandler {
 }
 
 func (h *landingHandler) Welcome(c *gin.Context) {
+	
+
+
 	message := h.service.GetWelcomeMessage()
+	title, err := h.service.GetFirstLanding()
+	if err != nil {
+		title = new(string)
+		*title = "رکوردی یافت نشد"
+	}
 
 	view.Render(c.Writer,
 		[]string{
@@ -23,9 +31,8 @@ func (h *landingHandler) Welcome(c *gin.Context) {
 			"internal/landing/view/header.blade",
 			"internal/landing/view/footer.blade",
 		}, map[string]interface{}{
-			"Title":    "صفحه اصلی",
+			"Title":    *title,
 			"Message":  message,
 			"LoggedIn": false,
 		})
-
 }

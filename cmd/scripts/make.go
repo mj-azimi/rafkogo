@@ -9,12 +9,29 @@ import (
 )
 
 var files = map[string]string{
-	"internal/{{.Name}}/handler.go":    `package {{.Name}}\n\n// Handler ...`,
-	"internal/{{.Name}}/model.go":      `package {{.Name}}\n\ntype {{.PascalName}} struct {}`,
-	"internal/{{.Name}}/repository.go": `package {{.Name}}\n\n// Repository functions`,
-	"internal/{{.Name}}/service.go":    `package {{.Name}}\n\n// Business logic`,
-	"internal/{{.Name}}/middleware.go": `package {{.Name}}\n\n// Middleware functions`,
-	"internal/{{.Name}}/routes.go":     `package {{.Name}}\n\n// Routes setup`,
+	"internal/{{.Name}}/handler.go": `package {{.Name}}
+
+// Handler functions for {{.PascalName}} module.
+`,
+	"internal/{{.Name}}/service.go": `package {{.Name}}
+
+// Service provides business logic for the {{.PascalName}} module.
+`,
+	"internal/{{.Name}}/middleware.go": `package {{.Name}}
+
+// Middleware functions for {{.PascalName}} module.
+`,
+	"internal/{{.Name}}/routes.go": `package {{.Name}}
+
+// Routes for {{.PascalName}} module.
+`,
+	"internal/{{.Name}}/database/{{.Name}}/model.go": `package {{.Name}}
+
+// Model definitions for {{.PascalName}} module.
+`,
+	"internal/{{.Name}}/view/index.blade":  `<!-- Index view for {{.PascalName}} module -->`,
+	"internal/{{.Name}}/view/header.blade": `<!-- Header for {{.PascalName}} module -->`,
+	"internal/{{.Name}}/view/footer.blade": `<!-- Footer for {{.PascalName}} module -->`,
 }
 
 type ModuleData struct {
@@ -29,9 +46,11 @@ func main() {
 	}
 
 	module := strings.ToLower(os.Args[1])
+	pascal := toPascalCase(module)
+
 	data := ModuleData{
 		Name:       module,
-		PascalName: strings.Title(module),
+		PascalName: pascal,
 	}
 
 	for tmplPath, tmplContent := range files {
@@ -58,17 +77,17 @@ func main() {
 
 func parseTemplate(tmpl string, data ModuleData) string {
 	t := template.Must(template.New("tmpl").Parse(tmpl))
-	var result string
-	buf := &stringWriter{&result}
-	t.Execute(buf, data)
-	return result
+	var result strings.Builder
+	t.Execute(&result, data)
+	return result.String()
 }
 
-type stringWriter struct {
-	s *string
-}
-
-func (w *stringWriter) Write(p []byte) (int, error) {
-	*w.s += string(p)
-	return len(p), nil
+func toPascalCase(input string) string {
+	parts := strings.Split(input, "_")
+	for i := range parts {
+		if len(parts[i]) > 0 {
+			parts[i] = strings.ToUpper(parts[i][:1]) + parts[i][1:]
+		}
+	}
+	return strings.Join(parts, "")
 }

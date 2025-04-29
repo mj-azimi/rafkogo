@@ -1,4 +1,4 @@
-package bootstrap
+package mysql
 
 import (
 	"fmt"
@@ -34,4 +34,19 @@ func DbConnect() {
 
     DB = database
     fmt.Println("✅ Connection to the database was successful.")
+}
+
+
+func AutoMigrate(models ...interface{}) error {
+    if DB == nil {
+        DbConnect()
+    }
+
+    err := DB.AutoMigrate(models...)
+    if err != nil {
+        log.Println("❌ Error during migration:", err)
+    } else {
+        fmt.Println("✅ Migration successful.")
+    }
+    return err
 }

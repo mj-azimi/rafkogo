@@ -1,15 +1,16 @@
 package landingModel
 
 import (
-	"rafkogo/bootstrap"
+	"rafkogo/utils/mysql"
 	"time"
 )
 
 type Landing struct {
-	ID        int       `gorm:"primaryKey;autoIncrement"`
-	CreatedAt time.Time `gorm:"column:created_at;autoCreateTime"`
+	ID        int        `gorm:"primaryKey;autoIncrement"`
+	Title     *string    `gorm:"column:title"`
+	CreatedAt time.Time  `gorm:"column:created_at;autoCreateTime"`
 }
 
 func Migration() error {
-    return bootstrap.DB.AutoMigrate(&Landing{})
+	return mysql.AutoMigrate(&Landing{})
 }
