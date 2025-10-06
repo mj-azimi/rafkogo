@@ -27,7 +27,7 @@ Rafkogo is a lightweight, modular web framework built with Go, designed to strea
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/rafkogo.git
+   git clone https://github.com/mj-azimi/rafkogo.git
    cd rafkogo
    ```
 
